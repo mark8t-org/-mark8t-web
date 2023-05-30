@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import { onMount } from 'svelte';
+	// import type Mark8tCore from '../../node_modules/-mark8t-core/src/lib/index.ts';
+
+	let Core: typeof any;
+
+	export let data;
+	onMount(() => {
+		Core = data.props?.Core as typeof any;
+	});
+</script>
+
+{#if Core}
+	<Core.Pages.Home />
+{/if}

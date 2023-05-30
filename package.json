@@ -31,5 +31,10 @@
 		"vite": "^4.3.0",
 		"vitest": "^0.25.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"-mark8t-admin": "B:\\Dev\\-mark8t-admin",
+		"-mark8t-core": "B:\\Dev\\-mark8t-core",
+		"@sveltejs/adapter-static": "^2.0.2"
+	}
 }

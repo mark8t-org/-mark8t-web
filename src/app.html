@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		%sveltekit.head%
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+
+<head>
+	<meta charset="utf-8" />
+	<!-- <link rel="icon" href="%sveltekit.assets%/favicon.png" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" async />
+
+	<!-- Material Typography -->
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@material/typography@13.0.0/dist/mdc.typography.css" /> -->
+
+	<!-- SMUI -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/svelte-material-ui/bare.css" />
+
+	<!-- adding Bootstrap 4 for UI components  -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<!-- 
+					latest msal according to git 
+					https://www.npmjs.com/package/@azure/msal-browser
+				-->
+	<script type="text/javascript" src="https://alcdn.msauth.net/browser/2.33.0/js/msal-browser.min.js"></script>
+
+	<!-- msal.min.js can be used in the place of msal.js; included msal.js to make debug easy -->
+	<!-- <script src="https://alcdn.msauth.net/browser/2.12.1/js/msal-browser.js"
+			integrity="sha384-QMpSjAFJzgh/J1zBL23Xx95KfVI1n9Je9GmB3byJbZ0/hj8o9CJTmxOK/BPZivil"
+			crossorigin="anonymous"></script> -->
+
+	<!-- To help ensure reliability, Microsoft provides a second CDN -->
+	<!-- <script type="text/javascript">
+			if (typeof Msal === 'undefined') document.write(unescape("%3Cscript src='https://alcdn.msftauth.net/browser/2.12.1/js/msal-browser.js' type='text/javascript' crossorigin='anonymous' %3E%3C/script%3E"));
+		</script> -->
+	%sveltekit.head%
+
+	<style>
+		html {
+			background-color: #1b1b1b;
+		}
+	</style>
+</head>
+
+<body>
+	<main>%sveltekit.body%</main>
+</body>
+
 </html>
