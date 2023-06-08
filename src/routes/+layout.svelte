@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
+	import { beforeNavigate, afterNavigate } from '$app/navigation';
+
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 
 	import { getObject } from '../../node_modules/-mark8t-core/src/lib/utils/storage';
 	import type CoreModule from '../../node_modules/-mark8t-core/src/lib/index';
@@ -30,6 +33,7 @@
 
 	//...
 	function isRoute(route: string) {
+		console.log($page?.url.pathname, route);
 		return $page?.url.pathname === route;
 	}
 
@@ -55,6 +59,14 @@
 	//...
 	onDestroy(() => console.log('+layout.svelte :: unmounted :: ' + pageName));
 
+	beforeNavigate(() => {
+		$NavigationStore = 'loading';
+	});
+
+	afterNavigate(() => {
+		$NavigationStore = 'loaded';
+	});
+
 	//...
 	onMount(async () => {
 		Core = data.props?.Core || null;
@@ -74,7 +86,7 @@
 	<link rel="icon" href={tenant?.website?.siteFavicon} />
 </svelte:head>
 
-<svelte:window
+<!-- <svelte:window
 	on:sveltekit:navigation-start={() => {
 		$NavigationStore = 'loading';
 		console.log('NavigationStore :: "');
@@ -83,7 +95,7 @@
 		$NavigationStore = 'loaded';
 		console.log('NavigationStore :: "');
 	}}
-/>
+/> -->
 
 <!-- {#if data?.sections}
 	<div class="submenu">
@@ -93,11 +105,11 @@
 	</div>
 {/if} -->
 
-<!-- {#if $NavigationStore === 'loading'}
+{#if $NavigationStore === 'loading'}
 	<div>
-		<Loading />
+		<Spinner />
 	</div>
-{/if} -->
+{/if}
 
 <!-- <Notifications /> -->
 {#if isLoading}
@@ -127,7 +139,7 @@
 		{#if !containsRoute('checkout_test')}
 			{#if containsRoute('/admin')}
 				<div />
-			{:else if isRoute('/')}
+			{:else if $NavigationStore === 'loaded' && (isRoute('/') || isRoute(base))}
 				<!-- <Landing.default /> -->
 				<!-- {:else if !inIframe()} -->
 				<Core.Components.Web.MediaRow />

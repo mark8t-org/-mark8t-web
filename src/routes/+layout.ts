@@ -47,7 +47,9 @@ export async function load({ url }) {
 		}
 	if (browser) {
 
-		const Core = (await import('../../node_modules/-mark8t-core/src/lib/index')).default;
+		const Core = (await import('../../node_modules/@mark8t/core/src/lib/index')).default;
+		const Admin = (await import('../../node_modules/@mark8t/admin/src/lib/+Admin.svelte')).default;
+		const Modules = (await import('../../node_modules/@mark8t/admin/src/lib/modules/index')).default;
 		return {
 			sections: [
 				{ slug: 'retail', title: 'retail' },
@@ -56,6 +58,8 @@ export async function load({ url }) {
 			],
 			props: {
 				Core: Core,
+				Admin: Admin,
+				Modules: Modules,
 				Tenant: await Core.Services.Tenant.getLatestModified()
 			}
 		};
