@@ -132,10 +132,14 @@
 		<!-- <slot /> -->
 	{:else}
 		<Core.Components.SEO />
-		<Core.Components.Web.Background />
-		<Core.Components.Web.Open />
-		<Core.Components.Web.Overlay.Logo />
-		<Core.Components.Web.Overlay.AgeGate />
+
+		{#if !containsRoute('admin')}
+			<Core.Components.Web.Background />
+			<Core.Components.Web.Open />
+			<Core.Components.Web.Overlay.Logo />
+			<Core.Components.Web.Overlay.AgeGate />
+		{/if}
+
 		{#if !containsRoute('checkout_test')}
 			{#if containsRoute('/admin')}
 				<div />
@@ -157,10 +161,17 @@
 			<!-- <slot /> -->
 			<!-- <Store.Cart /> -->
 			<slot />
-			<Core.Components.Web.MediaRow />
-			<Core.Components.Web.Footer />
+
+			{#if !containsRoute('admin')}
+				<Core.Components.Web.MediaRow />
+
+				<Core.Components.Web.Footer />
+			{/if}
 		{/if}
-		<Core.Components.Web.Store.Cart />
+
+		{#if !containsRoute('admin')}
+			<Core.Components.Web.Store.Cart />
+		{/if}
 	{/if}
 {/if}
 

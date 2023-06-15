@@ -13,6 +13,7 @@ import ProductsSlug from './products/[slug]/+page.svelte';
 import Reciept from './reciept/+page.svelte';
 import Retail from './retail/+page.svelte';
 import Home from './+page.svelte';
+import Layout from './+layout.svelte';
 
 
 export default {
@@ -28,5 +29,6 @@ export default {
 	ProductsSlug,
 	Reciept,
 	Retail,
-	Home
+	Home,
+	Layout
 }

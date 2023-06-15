@@ -52,11 +52,6 @@ export async function load({ url }) {
 		const Modules = (await import('../../node_modules/@mark8t/admin/src/lib/modules/index')).default;
 		console.log(Modules.EmailsPreview = (await import('../../node_modules/@mark8t/admin/src/lib/modules/index')).EmailsPreview)
 		return {
-			sections: [
-				{ slug: 'retail', title: 'retail' },
-				{ slug: 'profile', title: 'Profile' },
-				{ slug: 'notifications', title: 'Notifications' }
-			],
 			props: {
 				Core: Core,
 				Admin: Admin,
