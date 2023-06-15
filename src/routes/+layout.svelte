@@ -5,14 +5,14 @@
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
 
-	import { getObject } from '../../node_modules/-mark8t-core/src/lib/utils/storage';
-	import type CoreModule from '../../node_modules/-mark8t-core/src/lib/index';
-	import { NavigationStore } from '../../node_modules/-mark8t-core/src/lib/stores/navigation';
+	import { getObject } from '../../node_modules/@mark8t/core/src/lib/utils/storage';
+	import type CoreModule from '../../node_modules/@mark8t/core/src/lib/index';
+	import { NavigationStore } from '../../node_modules/@mark8t/core/src/lib/stores/navigation';
 	import { browser } from '$app/environment';
 	// import Checkout from "./checkout_test/+page.svelte";
 
-	import type { Tenant } from '../../node_modules/-mark8t-core/src/lib/utils/types';
-	import Spinner from '../../node_modules/-mark8t-core/src/lib/components/Spinner.svelte';
+	import type { Tenant } from '../../node_modules/@mark8t/core/src/lib/utils/types';
+	import Spinner from '../../node_modules/@mark8t/core/src/lib/components/Spinner.svelte';
 
 	/** @type {import('./$types').LayoutData} */
 	export let data;

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	// import type Mark8tCore from '../../node_modules/-mark8t-core/src/lib/index.ts';
+	import type Mark8tCore from '@mark8t/core';
 
-	let Core: typeof any;
-
+	let Core: typeof Mark8tCore;
 	export let data;
 	onMount(() => {
-		Core = data.props?.Core as typeof any;
+		console.log(data);
+		Core = data.props?.Core as typeof Mark8tCore;
 	});
 </script>
 

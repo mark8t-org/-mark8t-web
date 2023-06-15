@@ -21,7 +21,7 @@ export default defineConfig({
 				// search up for workspace root
 				searchForWorkspaceRoot(process.cwd()),
 				// your custom rules
-				'../-mark8t-core/src/lib/index.js',
+				'../@mark8t/core/src/lib/index.js',
 			],
 		},
 

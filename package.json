@@ -1,7 +1,11 @@
 {
 	"name": "@mark8t/web",
 	"version": "0.0.1",
+	"proxy": "http://localhost:4000",
 	"scripts": {
+		"prepare": "npm run smui-theme-light && npm run smui-theme-dark",
+		"smui-theme-light": "smui-theme compile static/smui.css -i src/theme",
+		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -13,7 +17,10 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@material/dom": "^14.0.0",
+		"@material/theme": "^14.0.0",
 		"@playwright/test": "^1.28.1",
+		"@smui/checkbox": "^7.0.0-beta.8",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.5.0",
@@ -24,6 +31,7 @@
 		"eslint-plugin-svelte": "^2.26.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
+		"smui-theme": "^7.0.0-beta.8",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"tslib": "^2.4.1",
@@ -33,7 +41,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@mark8t/admin": "B:\\\\Dev\\\\-mark8t-admin",
+		"@mark8t/admin": "B:\\Dev\\-mark8t-admin",
 		"@mark8t/core": "B:\\Dev\\-mark8t-core"
 	}
 }

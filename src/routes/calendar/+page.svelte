@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type Mark8tCore from '../../index';
+	import type Mark8tCore from '@mark8t/core';
 
 	let Core: typeof Mark8tCore;
 	export let data;

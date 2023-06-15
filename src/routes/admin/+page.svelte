@@ -5,7 +5,7 @@
 	let Core: typeof Mark8tCore;
 	let Admin: typeof any;
 	let Modules: typeof any;
-	let M: typeof any;
+
 	export let data;
 	function unsavedChanges() {
 		return false;

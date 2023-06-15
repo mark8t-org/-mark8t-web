@@ -4,14 +4,15 @@
 
 	// import type { Product } from '../../../lib/utils/types';
 
-	let product: any;
 	export let data;
+	export let price = false;
+
+	let product: any;
 
 	/** @type {import('./$types').PageData} */
 	onMount(async () => {
 		product = await Stores.Products.getProductBySlug(data.slug);
 	});
-	export let price = false;
 </script>
 
 <section id="section__product" class="mark8t-section">

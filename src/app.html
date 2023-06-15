@@ -14,6 +14,9 @@
 
 	<!-- SMUI -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/svelte-material-ui/bare.css" />
+	<!-- SMUI Styles -->
+	<link rel="stylesheet" href="/smui.css" media="(prefers-color-scheme: light)" />
+	<link rel="stylesheet" href="/smui-dark.css" media="screen and (prefers-color-scheme: dark)" />
 
 	<!-- adding Bootstrap 4 for UI components  -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -35,7 +38,6 @@
 			if (typeof Msal === 'undefined') document.write(unescape("%3Cscript src='https://alcdn.msftauth.net/browser/2.12.1/js/msal-browser.js' type='text/javascript' crossorigin='anonymous' %3E%3C/script%3E"));
 		</script> -->
 	%sveltekit.head%
-
 	<style>
 		html {
 			background-color: #1b1b1b;
