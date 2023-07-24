@@ -15,6 +15,22 @@ import Retail from './retail/+page.svelte';
 import Home from './+page.svelte';
 import Layout from './+layout.svelte';
 
+export {
+	Admin,
+	Calendar,
+	Cart,
+	Checkout,
+	Events,
+	Location,
+	Ontap,
+	Order,
+	Products,
+	ProductsSlug,
+	Reciept,
+	Retail,
+	Home,
+	Layout
+}
 
 export default {
 	Admin,

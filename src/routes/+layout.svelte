@@ -26,14 +26,14 @@
 
 	let isLoading = true;
 
-	//...
+	// this checks if the current route is in the current pathname
 	function containsRoute(route: string) {
 		return $page?.url?.pathname.indexOf(route) > -1;
 	}
 
-	//...
+	//checks if the current route in the current path
 	function isRoute(route: string) {
-		console.log($page?.url.pathname, route);
+		// console.log($page?.url.pathname, route);
 		return $page?.url.pathname === route;
 	}
 
@@ -42,7 +42,7 @@
 		return true; //window.location.origin === window.parent.location.origin;
 	}
 
-	//...
+	// checks if the route is equal to checkout
 	function isCheckout() {
 		return $page?.url.pathname.indexOf('checkout') > -1;
 	}
@@ -55,7 +55,21 @@
 			return true;
 		}
 	}
-
+	const categories = {
+		analytics: function () {
+			console.info('Dropped analytics cookies');
+		},
+		necessary: function () {
+			console.info('Dropped necessary cookies');
+		},
+		tracking: function () {
+			console.info('Dropped tracking cookies');
+		},
+		marketing: function () {
+			console.info('Dropped marketing cookies');
+		}
+	};
+	const choices = {};
 	//...
 	onDestroy(() => console.log('+layout.svelte :: unmounted :: ' + pageName));
 
@@ -71,7 +85,7 @@
 	onMount(async () => {
 		Core = data.props?.Core || null;
 		tenant = data.props?.Tenant || null;
-		console.log(data);
+		// console.log(data);
 		if (Core && Core.Services && Core.Services.Auth)
 			if (Core.Services.Auth.getAccountTimeToLive()) {
 				Core.Services.Auth.getPermissions();
@@ -138,6 +152,7 @@
 			<Core.Components.Web.Open />
 			<Core.Components.Web.Overlay.Logo />
 			<Core.Components.Web.Overlay.AgeGate />
+			<Core.Components.Web.Overlay.Cookies cookieName="test_gdpr" {categories} {choices} />
 		{/if}
 
 		{#if !containsRoute('checkout_test')}
