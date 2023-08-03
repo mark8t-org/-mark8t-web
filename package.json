@@ -1,11 +1,13 @@
 {
 	"name": "@mark8t/web",
-	"version": "1.1.0-beta.0",
+	"version": "1.1.0-beta.0.2",
 	"proxy": "http://localhost:4000",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "vite build && npm run package",
 		"preview": "vite preview",
+		"package": "svelte-kit sync && svelte-package && publint",
+		"prepublishOnly": "npm run package",
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
