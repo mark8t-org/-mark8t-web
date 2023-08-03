@@ -38,7 +38,6 @@ const menu = [
 /** @type {import('./$types').LayoutLoad} */
 export async function load({ url }) {
 
-
 	let page = menu.find((p) => url.pathname.indexOf(p.path) > -1);
 	if (!page)
 		return {
@@ -48,13 +47,14 @@ export async function load({ url }) {
 	if (browser) {
 
 		const Core = (await import('@mark8t/core')).default;
+		const Admin = (await import('@mark8t/admin')).default;
 		//const Admin = (await import('../../node_modules/@mark8t/admin/src/lib/+Admin.svelte')).default;
 		// const Modules = (await import('../../node_modules/@mark8t/admin/src/lib/modules/index')).default;
 		// console.log(Modules.EmailsPreview = (await import('../../node_modules/@mark8t/admin/src/lib/modules/index')).EmailsPreview)
 		return {
 			props: {
 				Core: Core,
-				// Admin: Admin,
+				Admin: Admin,
 				// Modules: Modules,
 				Tenant: await Core.Services.Tenant.getLatestModified()
 			}

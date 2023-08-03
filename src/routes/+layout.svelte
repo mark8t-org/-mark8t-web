@@ -6,14 +6,6 @@
 	import { base } from '$app/paths';
 	import { browser } from '$app/environment';
 
-	// import type CoreModule from '../../node_modules/@mark8t/core/src/lib/index';
-	// import type { Tenant } from '../../node_modules/@mark8t/core/src/lib/utils/types';
-
-	// import { getObject } from '../../node_modules/@mark8t/core/src/lib/utils/storage';
-	// import { Spinner } from '@mark8t/core';
-
-	let NavigationStore; // = Stores.Navigation;
-
 	// import Checkout from "./checkout_test/+page.svelte";
 
 	/** @type {import('./$types').LayoutData} */
@@ -25,11 +17,31 @@
 	let Core: typeof any | null;
 	let Components;
 	let Stores;
+	let Navigation = '';
 
 	let tenant: any | null;
 	$: pageName = $page.route.id;
 
 	let isLoading = true;
+
+	/* COOKIE STUFF */
+	const categories = {
+		analytics: function () {
+			console.info('Dropped analytics cookies');
+		},
+		necessary: function () {
+			console.info('Dropped necessary cookies');
+		},
+		tracking: function () {
+			console.info('Dropped tracking cookies');
+		},
+		marketing: function () {
+			console.info('Dropped marketing cookies');
+		}
+	};
+
+	/* COOKIE STUFF */
+	const choices = {};
 
 	// this checks if the current route is in the current pathname
 	function containsRoute(route: string) {
@@ -60,30 +72,16 @@
 			return true;
 		}
 	}
-	const categories = {
-		analytics: function () {
-			console.info('Dropped analytics cookies');
-		},
-		necessary: function () {
-			console.info('Dropped necessary cookies');
-		},
-		tracking: function () {
-			console.info('Dropped tracking cookies');
-		},
-		marketing: function () {
-			console.info('Dropped marketing cookies');
-		}
-	};
-	const choices = {};
+
 	//...
 	onDestroy(() => console.log('+layout.svelte :: unmounted :: ' + pageName));
 
 	beforeNavigate(() => {
-		$NavigationStore = 'loading';
+		Navigation = 'loading';
 	});
 
 	afterNavigate(() => {
-		$NavigationStore = 'loaded';
+		Navigation = 'loaded';
 	});
 
 	//...
@@ -94,15 +92,11 @@
 		Components = (await Core?.Components) || null;
 		Stores = (await Core?.Stores) || null;
 
-		// console.log(data);
-		if (Core && Core.Services && Core.Services.Auth)
+		if (Core && Core.Services && Core.Services.Auth) {
 			if (Core.Services.Auth.getAccountTimeToLive()) {
 				Core.Services.Auth.getPermissions();
 			}
-
-		NavigationStore = await Core?.Stores?.Navigation;
-		//tenant = await Core.Services.Tenant.getLatestModified();
-		// console.log('page :: tenant :: ', data);
+		}
 		isLoading = false;
 	});
 </script>
@@ -111,16 +105,16 @@
 	<link rel="icon" href={tenant?.website?.siteFavicon} />
 </svelte:head>
 
-<!-- <svelte:window
+<svelte:window
 	on:sveltekit:navigation-start={() => {
-		$NavigationStore = 'loading';
+		Navigation = 'loading';
 		console.log('NavigationStore :: "');
 	}}
 	on:sveltekit:navigation-end={() => {
-		$NavigationStore = 'loaded';
+		Navigation = 'loaded';
 		console.log('NavigationStore :: "');
 	}}
-/> -->
+/>
 
 <!-- {#if data?.sections}
 	<div class="submenu">
@@ -131,7 +125,7 @@
 {/if} -->
 
 {#if data && Core && browser}
-	{#if $NavigationStore === 'loading'}
+	{#if Navigation === 'loading'}
 		<div>
 			<Core.Components.Spinner />
 		</div>
@@ -167,9 +161,10 @@
 		{/if}
 
 		{#if !containsRoute('checkout_test')}
+			<!-- -->
 			{#if containsRoute('/admin')}
 				<div />
-			{:else if $NavigationStore === 'loaded' && (isRoute('/') || isRoute(base))}
+			{:else if Navigation === 'loaded' && (isRoute('/') || isRoute(base))}
 				<!-- <Landing.default /> -->
 				<!-- {:else if !inIframe()} -->
 				<Core.Components.Web.MediaRow />
@@ -182,6 +177,9 @@
 				<Core.Components.Web.MediaRow />
 				<Core.Components.Web.Navigation />
 			{/if}
+
+			<!-- -->
+
 			<!-- <Landing.default /> -->
 			<!-- {#if !isCheckout()} -->
 			<!-- <slot /> -->

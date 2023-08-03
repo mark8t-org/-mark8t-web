@@ -33,7 +33,8 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@mark8t/core": "latest"
+		"@mark8t/core": "latest",
+		"@mark8t/admin": "latest"
 	},
 	"peerDependencies": {
 		"svelte": "4.0.0"
