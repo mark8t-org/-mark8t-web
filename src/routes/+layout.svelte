@@ -4,15 +4,17 @@
 
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
-
-	import { getObject } from '../../node_modules/@mark8t/core/src/lib/utils/storage';
-	import type CoreModule from '../../node_modules/@mark8t/core/src/lib/index';
-	import { NavigationStore } from '../../node_modules/@mark8t/core/src/lib/stores/navigation';
 	import { browser } from '$app/environment';
-	// import Checkout from "./checkout_test/+page.svelte";
 
-	import type { Tenant } from '../../node_modules/@mark8t/core/src/lib/utils/types';
-	import Spinner from '../../node_modules/@mark8t/core/src/lib/components/Spinner.svelte';
+	// import type CoreModule from '../../node_modules/@mark8t/core/src/lib/index';
+	// import type { Tenant } from '../../node_modules/@mark8t/core/src/lib/utils/types';
+
+	// import { getObject } from '../../node_modules/@mark8t/core/src/lib/utils/storage';
+	// import { Spinner } from '@mark8t/core';
+
+	let NavigationStore; // = Stores.Navigation;
+
+	// import Checkout from "./checkout_test/+page.svelte";
 
 	/** @type {import('./$types').LayoutData} */
 	export let data;
@@ -20,8 +22,11 @@
 
 	let image = import.meta.env.VITE_SEO_IMAGE;
 
-	let Core: typeof CoreModule | null;
-	let tenant: Tenant | null;
+	let Core: typeof any | null;
+	let Components;
+	let Stores;
+
+	let tenant: any | null;
 	$: pageName = $page.route.id;
 
 	let isLoading = true;
@@ -85,11 +90,17 @@
 	onMount(async () => {
 		Core = data.props?.Core || null;
 		tenant = data.props?.Tenant || null;
+
+		Components = (await Core?.Components) || null;
+		Stores = (await Core?.Stores) || null;
+
 		// console.log(data);
 		if (Core && Core.Services && Core.Services.Auth)
 			if (Core.Services.Auth.getAccountTimeToLive()) {
 				Core.Services.Auth.getPermissions();
 			}
+
+		NavigationStore = await Core?.Stores?.Navigation;
 		//tenant = await Core.Services.Tenant.getLatestModified();
 		// console.log('page :: tenant :: ', data);
 		isLoading = false;
@@ -119,28 +130,28 @@
 	</div>
 {/if} -->
 
-{#if $NavigationStore === 'loading'}
-	<div>
-		<Spinner />
-	</div>
-{/if}
-
-<!-- <Notifications /> -->
-{#if isLoading}
-	<img src={image} class="loading-img" alt="loading" />
-	<div class="loader">Loading...</div>
-	<Spinner />
-{:else if error}
-	<div class="error">Something went wrong. Please try again later.</div>
-{/if}
-<!-- {:else} -->
-<!-- <Www.SEO /> -->
-{#if containsRoute('checkout_test')}
-	<!-- <Checkout /> -->
-	<!-- <slot /> -->
-{/if}
-
 {#if data && Core && browser}
+	{#if $NavigationStore === 'loading'}
+		<div>
+			<Core.Components.Spinner />
+		</div>
+	{/if}
+
+	<!-- <Notifications /> -->
+	{#if isLoading}
+		<img src={image} class="loading-img" alt="loading" />
+		<div class="loader">Loading...</div>
+		<Core.Components.Spinner />
+	{:else if error}
+		<div class="error">Something went wrong. Please try again later.</div>
+	{/if}
+	<!-- {:else} -->
+	<!-- <Www.SEO /> -->
+	{#if containsRoute('checkout_test')}
+		<!-- <Checkout /> -->
+		<!-- <slot /> -->
+	{/if}
+
 	{#if inIframe()}
 		<!-- <Checkout /> -->
 		<!-- <slot /> -->

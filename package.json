@@ -1,11 +1,8 @@
 {
 	"name": "@mark8t/web",
-	"version": "0.0.1",
+	"version": "1.1.0-beta.0",
 	"proxy": "http://localhost:4000",
 	"scripts": {
-		"prepare": "npm run smui-theme-light && npm run smui-theme-dark",
-		"smui-theme-light": "smui-theme compile static/smui.css -i src/theme",
-		"smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -25,16 +22,21 @@
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
+		"!dist/**/*.spec.*",
+		"playwright.config.ts",
+		"svelte.config.js",
+		"tsconfig.json",
+		"vite.config.ts",
+		"src/*"
 	],
-	"peerDependencies": {
-		"svelte": "4.0.0"
-	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-	    "@mark8t/core": "B:\\Dev\\-mark8t-core",
-	    "@mark8t/admin": "B:\\Dev\\-mark8t-admin"
-	}
+		"@mark8t/core": "latest"
+	},
+	"peerDependencies": {
+		"svelte": "4.0.0"
+	},
+	"devDependencies": {}
 }

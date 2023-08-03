@@ -47,15 +47,15 @@ export async function load({ url }) {
 		}
 	if (browser) {
 
-		const Core = (await import('../../node_modules/@mark8t/core/src/lib/index')).default;
-		const Admin = (await import('../../node_modules/@mark8t/admin/src/lib/+Admin.svelte')).default;
-		const Modules = (await import('../../node_modules/@mark8t/admin/src/lib/modules/index')).default;
-		console.log(Modules.EmailsPreview = (await import('../../node_modules/@mark8t/admin/src/lib/modules/index')).EmailsPreview)
+		const Core = (await import('@mark8t/core')).default;
+		//const Admin = (await import('../../node_modules/@mark8t/admin/src/lib/+Admin.svelte')).default;
+		// const Modules = (await import('../../node_modules/@mark8t/admin/src/lib/modules/index')).default;
+		// console.log(Modules.EmailsPreview = (await import('../../node_modules/@mark8t/admin/src/lib/modules/index')).EmailsPreview)
 		return {
 			props: {
 				Core: Core,
-				Admin: Admin,
-				Modules: Modules,
+				// Admin: Admin,
+				// Modules: Modules,
 				Tenant: await Core.Services.Tenant.getLatestModified()
 			}
 		};
