@@ -96,6 +96,7 @@
 			if (Core.Services.Auth.getAccountTimeToLive()) {
 				Core.Services.Auth.getPermissions();
 			}
+			Navigation = 'loaded';
 		}
 		isLoading = false;
 	});

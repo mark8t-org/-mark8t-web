@@ -1,6 +1,6 @@
 {
 	"name": "@mark8t/web",
-	"version": "1.1.0-beta.0.2",
+	"version": "1.1.0-beta.0.3",
 	"proxy": "http://localhost:4000",
 	"scripts": {
 		"dev": "vite dev",
@@ -35,8 +35,8 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@mark8t/core": "latest",
-		"@mark8t/admin": "latest"
+		"@mark8t/admin": "latest",
+		"@mark8t/core": "latest"
 	},
 	"peerDependencies": {
 		"svelte": "4.0.0"
