@@ -40,7 +40,7 @@ const menu = [
 ];
 // use sessions storage to ensure that Tenant has been loaded before rendering the page but not to call the server on subsuquent page loads
 /** @type {import('./$types').LayoutLoad} */
-export async function load({ url }) {
+export async function load({ url, fetch }) {
 
 
 	// let page = menu.find((p) => url.pathname.indexOf(p.path) > -1);
@@ -71,7 +71,7 @@ export async function load({ url }) {
 				Admin: Admin,
 				Modules: Modules,
 				Web: Web,
-				Tenant: await Core.Services.Tenant.getLatestModified()
+				Tenant: await Core.Services.Tenant.getLatestModified(fetch)
 			}
 		};
 	}
