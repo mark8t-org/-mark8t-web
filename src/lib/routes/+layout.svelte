@@ -135,7 +135,7 @@
 	<!-- <Notifications /> -->
 	{#if isLoading}
 		<img src={image} class="loading-img" alt="loading" />
-		<div class="loader">Loading...</div>
+		<!-- <div class="loader">Loading...</div> -->
 		<Core.Components.Spinner />
 	{:else if error}
 		<div class="error">Something went wrong. Please try again later.</div>

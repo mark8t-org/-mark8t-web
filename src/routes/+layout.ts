@@ -52,8 +52,9 @@ export async function load({ url, fetch }) {
 	if (browser) {
 
 		const Core = (await import('@mark8t/core')).default;
-		const Admin = (await import('@mark8t/admin')).default;
-		const Modules = (await import('@mark8t/admin')).Modules;
+		// const Admin = (await import('@mark8t/admin')).default;
+		// const Modules = (await import('@mark8t/admin')).Modules;
+
 		// const Web = (await import('@mark8t/web')).default;
 		// const Core = (await import('../../node_modules/@mark8t/core/src/lib/index')).default;
 		// const Admin = (await import('../../node_modules/@mark8t/admin/src/lib/+Admin.svelte')).default;
@@ -62,14 +63,14 @@ export async function load({ url, fetch }) {
 
 		const Web = (await import('../lib')).default;
 
-		console.log("Admin", Modules);
-		console.log("Web", Web);
+		// console.log("Admin", Modules);
+		// console.log("Web", Web);
 
 		return {
 			props: {
 				Core: Core,
-				Admin: Admin,
-				Modules: Modules,
+				// Admin: Admin,
+				// Modules: Modules,
 				Web: Web,
 				Tenant: await Core.Services.Tenant.getLatestModified(fetch)
 			}
